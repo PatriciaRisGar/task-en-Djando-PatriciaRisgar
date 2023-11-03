@@ -1,0 +1,7 @@
+{% extends 'task/base.html' %} {% block content %} {% for tarea in tasks %}
+<div>
+  <h2>{{ tarea.nombre }}</h2>
+  <p>{{ tarea.descripcion }}</p>
+  <p>{{ tarea.realizada | yesno:"Si,No"}}</p>
+</div>
+{% endfor %} {% endblock %}

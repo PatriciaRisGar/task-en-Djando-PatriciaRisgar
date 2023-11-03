@@ -141,16 +141,79 @@ Comenzamos con mysite:
         ]
     ```
 
-Ya podemos crear el usuario administrador usando la terminal desde env2 y carpeta task-en-Djando-PatriciaRisgar:
+Pasamos a modificar el archivo urls.py que tenemos que crear en task:
+
+```python
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path('', views.task_list, name='task_list'),
+    ]
+```
+
+Vamos a crear una carpete en task llamada templates, dentro de la misma generamos otra llamada task. Aqui guardaremos los archivos html con las que trabajaremos.
+
+Creamos la plantilla base que vamos a usar para la web. llamaremos al fichero base.html:
+
+```html
+<html>
+  <head>
+    <title>Patricia task</title>
+    <link
+      rel="stylesheet"
+      href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"
+    />
+    <link
+      href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <div class="page-header">
+      <h1><a href="/">Patricia tasks app</a></h1>
+    </div>
+    <div class="content container">
+      <div class="row">
+        <div class="col-md-8">{% block content %} {% endblock %}</div>
+      </div>
+    </div>
+  </body>
+</html>
+```
+
+Ahora creamos task_list.hml:
+
+```html
+{% extends 'task/base.html' %} {% block content %} {% for tarea in tasks %}
+<div>
+  <h2>{{ tarea.nombre }}</h2>
+  <p>{{ tarea.descripcion }}</p>
+  <p>{{ tarea.realizada | yesno:"Si,No"}}</p>
+</div>
+{% endfor %} {% endblock %}
+```
+
+Para poder gestionar las tareas necesitamos un administador.
+Para crear el usuario administrador mediante la terminal desde env2 y carpeta task-en-Djando-PatriciaRisgar:
 
     ```bash
         python manage.py createsuperuser
     ```
 
-    Al ejecutar este comando nos pedirá introducir nombre de usuario, email y contraseña.
+Al ejecutar este comando nos pedirá introducir nombre de usuario, email y contraseña.
 
 Vamos a reiniciar el servidor. Usamos Crtl+C para detenerlo y python manage.py runserver para iniciarlo.
 En nuestro navegador vamos a ir a http://127.0.0.1:8000/admin/ para logarnos con el usuario que acabamos de crear.
 
 Una vez dentro veremos verlo asi:
 ![Imagen sitio admin](image.png)
+
+Creamos un par tareas ques despues podremos ver en nuestra página http://127.0.0.1:8000/
+
+Ya hemos finalizado el proyecto. Solo queda retocar con Boostrap.

@@ -6,4 +6,4 @@ from .models import Task
 def tasks_list(request):
 
     tasks = Task.objects.all()
-    return render(request, 'task/task_list.html', {'tasks': tasks})
+    return render(request, 'task/tasks_list.html', {'tasks': tasks})

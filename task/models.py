@@ -9,5 +9,4 @@ class Task(models.Model):
     realizada = models.BooleanField(default=False)
 
     def __str__(self):
-
         return self.nombre
