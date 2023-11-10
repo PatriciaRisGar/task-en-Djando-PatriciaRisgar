@@ -1,4 +1,12 @@
-{% extends 'task/base.html' %} {% block content %} {% for tarea in tasks %}
+{% extends 'task/base.html' %} {% block content %}
+
+<form action="{% url 'tasks_list' %}" method="POST">
+  {%csrf_token%} {{form.as_p}}
+
+  <button type="submit">Aceptar</button>
+</form>
+
+{% for tarea in tasks %}
 <div>
   <h2>{{ tarea.nombre }}</h2>
   <p>{{ tarea.descripcion }}</p>
