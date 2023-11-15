@@ -1,0 +1,7 @@
+{% extends 'task/base.html' %} {% block content %}
+
+<h2>{{ task.nombre }}</h2>
+<p>{{ task.descripcion }}</p>
+<p>{{ task.realizada | yesno:"Si,No"}}</p>
+<a class="btn btn-default" href="{% url 'tasks_list' %}">Volver al Listado</a>
+{% endblock %}

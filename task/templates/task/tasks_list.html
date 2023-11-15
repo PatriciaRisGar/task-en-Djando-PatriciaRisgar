@@ -1,15 +1,10 @@
 {% extends 'task/base.html' %} {% block content %}
 
-<form action="{% url 'tasks_list' %}" method="POST">
-  {%csrf_token%} {{form.as_p}}
-
-  <button type="submit">Aceptar</button>
-</form>
+<a class="btn btn-default" href="{% url 'task_new' %}">New</a>
 
 {% for tarea in tasks %}
 <div>
   <h2>{{ tarea.nombre }}</h2>
-  <p>{{ tarea.descripcion }}</p>
-  <p>{{ tarea.realizada | yesno:"Si,No"}}</p>
+  <a href="{% url 'task_detail' pk=tarea.pk %}">Ir a detalles</a>
 </div>
 {% endfor %} {% endblock %}
