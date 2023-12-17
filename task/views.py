@@ -52,6 +52,7 @@ class Task_new(View):
             form.save()
             return redirect('tasks_new')
         return render(request, self.templateList, {'form':form})
+    
 """
 from django.shortcuts import render
 
